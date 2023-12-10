@@ -1,11 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
+const chatRouter = require('./routes/chat');
 
 var app = express();
 
@@ -19,13 +22,29 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: "La frase que querais",
+  resave: false,
+  saveUninitialized: true
+}));
+
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/register', registerRouter);
+app.use('/chat', chat, chatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+function chat(req, res, next){
+  if(req.session.user){
+    next();
+  } else {
+    res.redirect("login");
+  }
+}
 
 // error handler
 app.use(function(err, req, res, next) {
