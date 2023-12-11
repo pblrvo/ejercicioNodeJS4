@@ -8,7 +8,7 @@ const session = require('express-session');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
-const chatRouter = require('./routes/chat');
+var chatRouter = require('./routes/chat');
 
 var app = express();
 
