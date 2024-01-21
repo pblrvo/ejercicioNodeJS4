@@ -12,9 +12,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home</span></a>
-          </li>
           <% if (user) { %>
             <li class="nav-item">
               <a class="nav-link" href="/chat">Chat</a>
@@ -23,6 +20,9 @@
               <a class="nav-link" href="/logout">Logout</a>
             </li>
           <% } else { %>
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home</span></a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
             </li>
@@ -32,7 +32,7 @@
           <% } %>
         </ul>
         <% if (user) { %>
-          <div>Welcome <%= user.username %>!</div>
+          <div>Welcome <%= user %>!</div>
         <% } %>
       </div>
     </nav>

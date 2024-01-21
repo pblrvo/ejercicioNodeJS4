@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
     if(!user){
       const password = await bcrypt.hash(pass, 10);
       const newUser = await sequelize.models.user.create({username, password});
-      req.session.user = {username: user};
+      req.session.user = {username: newUser.username};
       req.session.message = "Registro correcto!"
       res.redirect("/chat");
     } else {
