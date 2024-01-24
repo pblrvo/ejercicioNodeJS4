@@ -9,9 +9,8 @@ var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/login");
 var registerRouter = require("./routes/register");
 var chatRouter = require("./routes/chat");
-
 var app = express();
-
+app.locals.title = "AnimeDAO";
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

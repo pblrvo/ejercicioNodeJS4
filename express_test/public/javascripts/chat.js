@@ -8,7 +8,7 @@ form.addEventListener('submit', function(e){
     e.preventDefault();
     if(input.value){
         socket.emit("chat",input.value);
-        input.value = "";
+        input.value =  "";
     }
 });
 socket.on("chat", (msg) =>{

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('login', {user: req.session.user,  title: 'Login' });
+  res.render('login', {user: req.session.user,  title: req.app.locals.title, section: 'Login' });
 });
 
 router.post('/', async (req, res) => {
